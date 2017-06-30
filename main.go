@@ -28,6 +28,7 @@ func health(w http.ResponseWriter, _ *http.Request) {
 func main() {
 	log.Println("Starting…")
 
+	http.HandleFunc("/health", health)
 	http.HandleFunc("/", redirectToHttps)
 
 	log.Fatal(http.ListenAndServe(":11111", nil))
