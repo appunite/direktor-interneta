@@ -4,6 +4,7 @@ import (
 	"net/http"
 	"net/url"
 	"log"
+	"fmt"
 )
 
 func redirectToHttps(w http.ResponseWriter, req *http.Request) {
@@ -18,6 +19,10 @@ func redirectToHttps(w http.ResponseWriter, req *http.Request) {
 	log.Println("Redirecting", req.Host)
 
 	http.Redirect(w, req, url.String(), http.StatusMovedPermanently)
+}
+
+func health(w http.ResponseWriter, _ *http.Request) {
+	fmt.Fprintln(w, "OK")
 }
 
 func main() {
